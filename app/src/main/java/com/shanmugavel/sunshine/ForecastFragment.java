@@ -51,16 +51,46 @@ public class ForecastFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(LOG_TAG, "Inside onCreate");
         setHasOptionsMenu(true);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(LOG_TAG, "Inside onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(LOG_TAG, "Inside onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(LOG_TAG, "Inside onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(LOG_TAG, "Inside onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(LOG_TAG, "Inside onDestroy");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_forecast, container, false);
 
-        List<String> weeklyForecast = new ArrayList<String>();
+        List<String> weeklyForecast = new ArrayList<>();
         /*weeklyForecast.add("Today -- Sunny -- 88/63");
         weeklyForecast.add("Tomorrow -- Cloudy -- 70/50");
         weeklyForecast.add("Wednesday -- Sunny -- 85/60");
@@ -69,7 +99,7 @@ public class ForecastFragment extends Fragment {
         weeklyForecast.add("Saturday -- Sunny -- 88/67");
         weeklyForecast.add("Sunday -- Sunny -- 86/72");*/
 
-        adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, weeklyForecast);
+        adapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, weeklyForecast);
         ListView lstView = (ListView)   rootView.findViewById(R.id.listview_forecast);
         lstView.setAdapter(adapter);
         lstView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -184,7 +214,7 @@ public class ForecastFragment extends Fragment {
 
                 // Read the input stream into a String
                 InputStream inputStream = urlConnection.getInputStream();
-                StringBuffer buffer = new StringBuffer();
+                StringBuilder buffer = new StringBuilder();
                 if (inputStream == null) {
                     // Nothing to do.
                     return null;
@@ -196,7 +226,8 @@ public class ForecastFragment extends Fragment {
                     // Since it's JSON, adding a newline isn't necessary (it won't affect parsing)
                     // But it does make debugging a *lot* easier if you print out the completed
                     // buffer for debugging.
-                    buffer.append(line + "\n");
+                    buffer.append(line);
+                    buffer.append( "\n");
                 }
 
                 if (buffer.length() == 0) {
@@ -249,8 +280,7 @@ public class ForecastFragment extends Fragment {
             long roundedHigh = Math.round(high);
             long roundedLow = Math.round(low);
 
-            String highLowStr = roundedHigh + "/" + roundedLow;
-            return highLowStr;
+            return roundedHigh + "/" + roundedLow;
         }
 
         /**
