@@ -29,4 +29,7 @@
         <item>metric</item>
         <item>imperial</item>
     </string-array>
+    <string name="pref_units_metric" translatable="false">metric</string>
+    <string name="pref_units_imperial" translatable="false">imperial</string>
+
 </resources>

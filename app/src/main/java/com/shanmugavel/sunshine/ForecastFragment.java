@@ -52,6 +52,13 @@ public class ForecastFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(LOG_TAG, "Inside onCreate");
+        /*ActionBarActivity parentActivity = (ActionBarActivity) getActivity();
+        if (null == parentActivity.getSupportActionBar()) {
+            Log.i(LOG_TAG, "ActionBar is null");
+        } else {
+            Log.i(LOG_TAG, "ActionBar is avl");
+            parentActivity.getSupportActionBar().setSubtitle("Hello!!!");
+        }*/
         setHasOptionsMenu(true);
     }
 
